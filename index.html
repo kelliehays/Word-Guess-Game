@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Javascript Hangman!</title>
+<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+</head>
+
+<body>
+ <h1>Hawaiian Hangman!</h1>
+
+ <h2> Get ready for your tropical vacation with scenes from the islands and a 
+      word guessing game. <h2>
+
+ 
+ <image id="ferns" src="assets/images/ferns.jpg" alt="ferns">
+ <image id="volcano" src="assets/images/volcano.jpg" alt="volcano">
+ 
+
+
+ <script>
+ //My external linked JS is NOT working
+ // Create an array of words
+ let words = [
+ "pineapple",
+ "coconut",
+ "lanai",
+ "palm",
+ "ocean",
+ "aloha",
+ "mahalo",
+ "kona",
+ "volcano"
+ ];
+
+ // Pick a random word
+ let word = words[Math.floor(Math.random() * words.length)];
+
+ // Set up the answer array. This is the 1st for loop. 
+ let answerArray = [];
+ for (var i = 0; i < word.length; i++) {
+ answerArray[i] = "_";
+ }
+ let remainingLetters = word.length;
+
+ // The game loop
+ while (remainingLetters > 0) {
+
+ // Show the player their progress
+ alert(answerArray.join(" "));
+
+ // Get a guess from the player
+ let guess = prompt("Guess a letter, or click Cancel to end playing");
+ if (guess === null) {
+
+ // Exit the game loop
+ break;
+ } else if (guess.length !== 1) {
+ alert("Please enter a single letter.");
+ } else {
+
+ // Update the game state with the guess.  (i has already been used, so now we'll use j)
+ for (var j = 0; j < word.length; j++) {
+ if (word[j] === guess) {
+ answerArray[j] = guess;
+ remainingLetters--;
+ }
+ }
+ }
+// The end of the game loop
+ }
+ // Reveal the answer and congratulate the player
+ alert(answerArray.join(" "));
+ alert("Good job! The word is " + word);
+ </script>
+</body>
+</html>
